@@ -1,0 +1,130 @@
+<div class="container">
+  <div class="sixteen columns">
+    <div class="section list-collection-wrapper">
+      <div class="list-collections clearfix equal-columns--outside-trim equal-columns--clear">
+        {% for block in section.blocks %}
+        <div class="four columns alpha blank thumbnail even medium-down--one-half small-down--one-half new-seciton">
+          <div class="product-wrap">
+            <div class="image__container">
+              {% if block.settings.image != blank %}
+              {% render 'image-element', image: block.settings.image, alt: block.settings.image.alt %}
+              {% else %}
+              {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            </div>
+            <div class="content-area">
+              <h2>{{ block.settings.title }}</h2>
+              <div class="content-seciton">
+                {{ block.settings.content }}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .new-seciton img {
+    height: 54px !important;
+  }
+  .content-area h2 {
+    font-weight: bold;
+    color: #000000;
+    font-size: 18px;
+    line-height: 25px;
+    margin: 20px 0 20px;
+    text-transform: capitalize;
+  }
+  .content-seciton p {
+    color: unset;
+    font-weight: 100;
+    font-size: 15px;
+  }
+  #shopify-section-secure_widgets {
+    background-color: #f7f7f7;
+    border-top: #000000 solid 0px;
+    border-bottom: rgba(0,0,0,0) solid 0px;
+    padding: 35px 0 0;
+  } 
+  @media screen and (max-width: 769px){ 
+    .new-seciton {
+      border-right-width: 1px;
+      border-bottom-width: 1px;
+      border-top-width: 0px;
+      border-left-width: 0px;
+      border-style: solid;
+      border-color: #e5e5e5;
+      padding-top: 20px;
+      width: 50% !important;
+      min-height: 170px;
+    } 
+    .content-seciton{
+      display:none;
+    }
+    .new-seciton:nth-child(even) {
+      border-right: 0 !important;
+      margin-bottom: 0;
+      margin-left: 0 !important;
+    }
+    .new-seciton:nth-child(odd) {
+      margin-bottom: 0;
+      padding-right: 0 !important;
+      margin-right: 0 !important;
+    }
+    .content-area h2 {
+      padding: 0 10px;
+      font-weight: bold;
+      color: #000000;
+      font-size: 14px;
+      line-height: 25px;
+      font-family: "Josefin Sans","HelveticaNeue","Helvetica Neue",sans-serif;
+      margin: 20px 0 20px;
+      text-transform: capitalize;
+    }
+    .new-seciton:nth-last-child(2), .new-seciton:nth-last-child(1) {
+      border-bottom: 0 !important;
+    }
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Secure Widgets",
+    "class": "content-widgets-section",
+    "settings": [],
+    "blocks": [
+     {
+      "type": "icon",
+      "name": "Icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Support Français"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Une équipe dédiée au Support pour répondre à toutes vos questions.</p>"
+        }
+      ]
+     }
+    ],
+    "presets": [
+      {
+        "name": "Icon",
+        "category": "Image",
+        "blocks": []
+      }
+    ]
+  }
+{% endschema %}
