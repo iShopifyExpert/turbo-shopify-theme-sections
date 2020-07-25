@@ -20,6 +20,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script type="text/javascript">
+  $(document).on('shopify:section:load', function(e){ $('.band_sliders').slick('refresh'); });
+  $(document).on('shopify:section:unload', function(e){ $('.band_sliders').slick('refresh'); });
+  $(document).on('shopify:section:reorder', function(e){ $('.band_sliders').slick('refresh'); });
+  $(document).on('shopify:section:select', function(e){ $('.band_sliders').slick('refresh'); });
+  $(document).on('shopify:block:deselect', function(e){ $('.band_sliders').slick('refresh'); });
   $('.band_sliders').on('init', function(event, slick){
     console.log('intr');
     $('.strapLine_slider').addClass('slider_loaded');
